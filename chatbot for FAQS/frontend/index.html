@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Aura AI - Advanced NLP Chatbot and Intelligent FAQ Knowledge Base. Get real-time answers using semantic intent matching.">
+    <title>Aura AI - Intelligent FAQ Assistant</title>
+    <!-- Modern Outfit Typography from Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="dark-theme">
+    <div class="app-container">
+        
+        <!-- SIDEBAR -->
+        <aside class="sidebar">
+            <div class="sidebar-brand">
+                <div class="brand-logo">
+                    <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="logo-icon">
+                        <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path>
+                        <polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline>
+                        <line x1="12" y1="22.08" x2="12" y2="12"></line>
+                    </svg>
+                </div>
+                <div class="brand-info">
+                    <h1>Aura AI</h1>
+                    <div class="status-indicator">
+                        <span class="status-dot online"></span>
+                        <span class="status-text">NLP Matcher Active</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- FAQ Category Sidebar Filters -->
+            <section class="sidebar-section">
+                <h2>Browse Categories</h2>
+                <nav class="category-list" aria-label="FAQ categories">
+                    <button class="category-item active" data-category="All">
+                        <span class="category-bullet"></span> All FAQs
+                    </button>
+                    <button class="category-item" data-category="General">
+                        <span class="category-bullet"></span> General
+                    </button>
+                    <button class="category-item" data-category="Features">
+                        <span class="category-bullet"></span> Features
+                    </button>
+                    <button class="category-item" data-category="Account">
+                        <span class="category-bullet"></span> Account & Credentials
+                    </button>
+                    <button class="category-item" data-category="Pricing">
+                        <span class="category-bullet"></span> Pricing & Plans
+                    </button>
+                    <button class="category-item" data-category="Troubleshooting">
+                        <span class="category-bullet"></span> Troubleshooting
+                    </button>
+                </nav>
+            </section>
+
+            <!-- Quick Suggestions Panel -->
+            <section class="sidebar-section suggestions-section">
+                <h2>Suggested Questions</h2>
+                <div class="suggestion-pills">
+                    <button class="suggest-btn" data-question="What is Aura AI?">What is Aura AI?</button>
+                    <button class="suggest-btn" data-question="How do I reset my password?">How to reset password?</button>
+                    <button class="suggest-btn" data-question="Is there a free trial?">Is there a free trial?</button>
+                    <button class="suggest-btn" data-question="Why is my chatbot not showing up?">Chatbot not showing up?</button>
+                </div>
+            </section>
+
+            <footer class="sidebar-footer">
+                <p>Aura AI Engine v1.0.0</p>
+            </footer>
+        </aside>
+
+        <!-- MAIN CONTENT AREA -->
+        <main class="main-content">
+            
+            <!-- HEADER NAVIGATION TABS -->
+            <header class="app-header">
+                <div class="tabs-navigation" role="tablist">
+                    <button class="tab-btn active" id="chat-tab-trigger" role="tab" aria-selected="true" aria-controls="chat-panel">
+                        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="tab-icon">
+                            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+                        </svg>
+                        Interactive Assistant
+                    </button>
+                    <button class="tab-btn" id="explorer-tab-trigger" role="tab" aria-selected="false" aria-controls="explorer-panel">
+                        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="tab-icon">
+                            <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+                            <line x1="9" y1="3" x2="9" y2="21"></line>
+                            <line x1="9" y1="9" x2="21" y2="9"></line>
+                            <line x1="9" y1="15" x2="21" y2="15"></line>
+                        </svg>
+                        FAQ Knowledge Base
+                    </button>
+                </div>
+            </header>
+
+            <!-- CHATROOM PANEL -->
+            <section class="content-panel active" id="chat-panel" role="tabpanel" aria-labelledby="chat-tab-trigger">
+                
+                <div class="chat-viewport" id="chat-viewport">
+                    <!-- Dynamic Messages will be injected here -->
+                    
+                    <!-- Welcome Aura Prompt Card -->
+                    <div class="bot-welcome-card" id="welcome-card">
+                        <div class="welcome-icon">
+                            <svg viewBox="0 0 24 24" width="40" height="40" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <circle cx="12" cy="12" r="10"></circle>
+                                <path d="M8 14s1.5 2 4 2 4-2 4-2"></path>
+                                <line x1="9" y1="9" x2="9.01" y2="9"></line>
+                                <line x1="15" y1="9" x2="15.01" y2="9"></line>
+                            </svg>
+                        </div>
+                        <h3>Hello! I am Aura, your Intelligent FAQ Assistant</h3>
+                        <p>Ask me anything about Aura AI. I leverage advanced natural language preprocessing (NLP) to understand your questions and serve the most relevant information instantly.</p>
+                        
+                        <div class="capabilities-grid">
+                            <div class="capability-card">
+                                <strong>Smart Lemmatization</strong>
+                                <span>I recognize variations (e.g. searching for "passwords" will match "password").</span>
+                            </div>
+                            <div class="capability-card">
+                                <strong>Semantic Match</strong>
+                                <span>I evaluate word weights (TF-IDF) and compute Cosine Similarity scores.</span>
+                            </div>
+                            <div class="capability-card">
+                                <strong>Interactive Suggestions</strong>
+                                <span>If your query is fuzzy, I will recommend matching topics to guide you.</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- CHAT INPUT PANEL -->
+                <div class="chat-input-area">
+                    <form id="chat-form" class="chat-input-wrapper">
+                        <input type="text" id="chat-input" placeholder="Type your question here (e.g., 'how can I integrate with Slack?')" autocomplete="off" required>
+                        <button type="submit" class="send-btn" aria-label="Send message">
+                            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <line x1="22" y1="2" x2="11" y2="13"></line>
+                                <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+                            </svg>
+                        </button>
+                    </form>
+                    <div class="input-helper">
+                        <span>💡 Aura NLP parses keywords, filters stopwords, and identifies core intent dynamically.</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- FAQ EXPLORER PANEL -->
+            <section class="content-panel" id="explorer-panel" role="tabpanel" aria-labelledby="explorer-tab-trigger">
+                <div class="explorer-header">
+                    <div class="search-box">
+                        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="search-icon">
+                            <circle cx="11" cy="11" r="8"></circle>
+                            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                        </svg>
+                        <input type="text" id="faq-search-input" placeholder="Search the FAQ Knowledge Base...">
+                        <button id="search-clear-btn" class="clear-btn" aria-label="Clear search" style="display: none;">
+                            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                <line x1="18" y1="6" x2="6" y2="18"></line>
+                                <line x1="6" y1="6" x2="18" y2="18"></line>
+                            </svg>
+                        </button>
+                    </div>
+                    <div class="explorer-stats">
+                        Showing <span id="faq-count">0</span> FAQs
+                    </div>
+                </div>
+
+                <!-- Grid list of FAQs -->
+                <div class="faq-explorer-grid" id="faq-explorer-grid">
+                    <!-- Cards loaded dynamically -->
+                </div>
+            </section>
+
+        </main>
+    </div>
+
+    <!-- Notification system for errors or loading states -->
+    <div id="toast-container" class="toast-container"></div>
+
+    <script src="app.js"></script>
+</body>
+</html>

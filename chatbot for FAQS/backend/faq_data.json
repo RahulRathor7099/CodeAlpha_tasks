@@ -1,0 +1,72 @@
+[
+  {
+    "id": 1,
+    "category": "General",
+    "question": "What is Aura AI?",
+    "answer": "Aura AI is an advanced, AI-powered customer support and automation platform designed to help businesses automate their operations, answer customer queries in real-time, and streamline workflows using custom natural language processing models.",
+    "keywords": ["aura", "ai", "what", "platform", "definition", "overview"]
+  },
+  {
+    "id": 2,
+    "category": "General",
+    "question": "How do I get started with Aura AI?",
+    "answer": "To get started, simply sign up for a free account on our homepage, follow the interactive setup wizard to configure your chatbot workspace, customize the appearance, and paste the one-line integration script into your website's HTML header.",
+    "keywords": ["get started", "setup", "begin", "signup", "install", "wizard"]
+  },
+  {
+    "id": 3,
+    "category": "Features",
+    "question": "Does Aura AI support multiple languages?",
+    "answer": "Yes! Aura AI supports over 40 languages including English, Spanish, French, German, Mandarin, Japanese, and Hindi. It automatically detects the customer's language and translates replies instantly without any manual configuration.",
+    "keywords": ["languages", "translate", "spanish", "french", "multilingual", "german", "hindi"]
+  },
+  {
+    "id": 4,
+    "category": "Features",
+    "question": "Can I integrate Aura AI with other software?",
+    "answer": "Absolutely. Aura AI provides native integrations with popular platforms like Slack, Shopify, Zendesk, HubSpot, and Salesforce. We also offer a robust REST API and Webhook support for custom backend connections.",
+    "keywords": ["integrations", "slack", "shopify", "salesforce", "hubspot", "api", "webhooks"]
+  },
+  {
+    "id": 5,
+    "category": "Account",
+    "question": "How do I reset my password?",
+    "answer": "If you forgot your password or need to reset it, go to the login screen and click the 'Forgot Password' link. Enter your registered email address, and we will send you a secure link to create a new password within 5 minutes.",
+    "keywords": ["reset password", "forgot password", "login help", "change password", "credentials"]
+  },
+  {
+    "id": 6,
+    "category": "Account",
+    "question": "Where can I find my API keys?",
+    "answer": "You can locate your API keys by going to the developer dashboard: click on 'Settings' in the left-hand navigation pane, select 'API Credentials', and click 'Reveal Secret Key'. Remember to keep these credentials secure!",
+    "keywords": ["api keys", "credentials", "token", "developer dashboard", "secret key"]
+  },
+  {
+    "id": 7,
+    "category": "Pricing",
+    "question": "Is there a free trial available?",
+    "answer": "Yes, we offer a 14-day free trial on our Pro plan. No credit card is required to sign up. During the trial, you have full access to all features, including API access and multilingual support.",
+    "keywords": ["free trial", "pro plan", "cost", "free", "pricing", "duration"]
+  },
+  {
+    "id": 8,
+    "category": "Pricing",
+    "question": "Can I upgrade or downgrade my plan at any time?",
+    "answer": "Yes, you can upgrade, downgrade, or cancel your subscription at any time directly through the Billing section of your Account Settings. If you upgrade, the change is instant and prorated. If you downgrade or cancel, it will take effect at the end of the billing cycle.",
+    "keywords": ["upgrade plan", "downgrade plan", "billing", "subscription", "cancel", "prorated"]
+  },
+  {
+    "id": 9,
+    "category": "Troubleshooting",
+    "question": "Why is my chatbot not showing up on my website?",
+    "answer": "This is usually caused by one of three common issues: 1) The snippet was pasted in the wrong location (it should be right before the closing </head> or </body> tag), 2) Your website domain hasn't been added to the Allowed Domains list in the Dashboard settings, or 3) A browser extension like an ad-blocker is caching an old script. Try clearing your browser cache or disabling the blocker.",
+    "keywords": ["not showing up", "missing chatbot", "widget hidden", "allowed domains", "script error"]
+  },
+  {
+    "id": 10,
+    "category": "Troubleshooting",
+    "question": "How do I resolve high latency in chatbot responses?",
+    "answer": "High response latency is usually caused by network issues or heavily customized webhook responses that take too long to complete. Ensure your custom webhooks respond within 2000ms. If you are using our standard API, verify that you are connected to the server region closest to your visitors.",
+    "keywords": ["high latency", "slow responses", "lag", "webhook timeout", "performance"]
+  }
+]
