@@ -1,1 +1,517 @@
+<!DOCTYPE html>
+<html class="dark" lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>ASTRA_TRANSLATE // Quantum Language Matrix</title>
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <link href="https://fonts.googleapis.com" rel="preconnect"/>
+  <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@400;500&amp;family=Sora:wght@400;600;700&amp;display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+  <script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "on-primary": "#00363a",
+            "secondary": "#ebb2ff",
+            "surface-bright": "#363940",
+            "tertiary": "#f7f8f8",
+            "tertiary-container": "#dbdbdb",
+            "on-secondary-fixed": "#320047",
+            "on-surface": "#e1e2eb",
+            "error-container": "#93000a",
+            "on-tertiary": "#2f3131",
+            "inverse-surface": "#e1e2eb",
+            "on-tertiary-fixed-variant": "#454747",
+            "on-background": "#e1e2eb",
+            "surface-container-low": "#191c22",
+            "on-secondary-fixed-variant": "#74009f",
+            "surface-dim": "#10131a",
+            "secondary-container": "#ce5dff",
+            "secondary-fixed-dim": "#ebb2ff",
+            "tertiary-fixed": "#e2e2e2",
+            "inverse-primary": "#00696f",
+            "surface-container-lowest": "#0b0e14",
+            "on-primary-fixed-variant": "#004f54",
+            "outline": "#849495",
+            "on-secondary-container": "#480064",
+            "on-primary-container": "#006a71",
+            "surface": "#10131a",
+            "on-tertiary-container": "#5e6060",
+            "surface-container": "#1d2026",
+            "primary-fixed-dim": "#00dbe7",
+            "primary-container": "#00f2ff",
+            "on-secondary": "#520071",
+            "on-error-container": "#ffdad6",
+            "primary-fixed": "#74f5ff",
+            "background": "#10131a",
+            "tertiary-fixed-dim": "#c6c6c7",
+            "on-surface-variant": "#b9cacb",
+            "primary": "#e1fdff",
+            "outline-variant": "#3a494b",
+            "on-tertiary-fixed": "#1a1c1c",
+            "secondary-fixed": "#f8d8ff",
+            "on-primary-fixed": "#002022",
+            "surface-container-highest": "#32353c",
+            "surface-tint": "#00dbe7",
+            "surface-container-high": "#272a31",
+            "inverse-on-surface": "#2e3037",
+            "error": "#ffb4ab",
+            "surface-variant": "#32353c",
+            "on-error": "#690005"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+          "spacing": {
+            "margin-mobile": "16px",
+            "max-width-desktop": "1200px",
+            "gutter": "24px",
+            "container-padding": "32px",
+            "unit": "8px"
+          },
+          "fontFamily": {
+            "display-lg-mobile": ["Sora"],
+            "headline-md": ["Sora"],
+            "body-lg": ["Inter"],
+            "display-lg": ["Sora"],
+            "translation-output": ["Sora"],
+            "body-md": ["Inter"],
+            "label-sm": ["JetBrains Mono"]
+          },
+          "fontSize": {
+            "display-lg-mobile": ["32px", { "lineHeight": "1.2", "fontWeight": "700" }],
+            "headline-md": ["24px", { "lineHeight": "1.3", "fontWeight": "600" }],
+            "body-lg": ["18px", { "lineHeight": "1.6", "fontWeight": "400" }],
+            "display-lg": ["48px", { "lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+            "translation-output": ["28px", { "lineHeight": "1.4", "letterSpacing": "-0.01em", "fontWeight": "400" }],
+            "body-md": ["16px", { "lineHeight": "1.5", "fontWeight": "400" }],
+            "label-sm": ["12px", { "lineHeight": "1.0", "letterSpacing": "0.1em", "fontWeight": "500" }]
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    .glass-panel {
+      background: rgba(255, 255, 255, 0.04);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+    .glow-cyan {
+      box-shadow: 0 0 15px rgba(0, 242, 255, 0.25);
+    }
+    .glow-purple {
+      box-shadow: 0 0 15px rgba(235, 178, 255, 0.25);
+    }
+    .gradient-text-cyan {
+      background: linear-gradient(90deg, #e1fdff, #00f2ff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .bg-nebula {
+      background: radial-gradient(circle at 10% 10%, rgba(0, 242, 255, 0.05) 0%, transparent 40%),
+                  radial-gradient(circle at 90% 90%, rgba(235, 178, 255, 0.05) 0%, transparent 40%);
+    }
+    .typing-cursor::after {
+      content: '|';
+      animation: blink 1s step-end infinite;
+      color: #00f2ff;
+    }
+    @keyframes blink {
+      50% { opacity: 0; }
+    }
+    .scan-line {
+      background: linear-gradient(to bottom, transparent, rgba(0, 242, 255, 0.15), transparent);
+      animation: scan 3s linear infinite;
+    }
+    @keyframes scan {
+      0% { transform: translateY(-100%); }
+      100% { transform: translateY(100%); }
+    }
+    
+    /* Custom thin scrollbar */
+    ::-webkit-scrollbar {
+      width: 4px;
+      height: 4px;
+    }
+    ::-webkit-scrollbar-track {
+      background: transparent;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: rgba(0, 242, 255, 0.3);
+      border-radius: 4px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: rgba(0, 242, 255, 0.6);
+    }
+    
+    /* High-fidelity motion and visual effects */
+    @media (prefers-reduced-motion: no-preference) {
+      .drifting-shape {
+        position: absolute;
+        border-radius: 50%;
+        filter: blur(80px);
+        opacity: 0.35;
+        pointer-events: none;
+        z-index: 0;
+      }
+      .drifting-shape-1 {
+        background: rgba(0, 242, 255, 0.25);
+        width: 40vw;
+        height: 40vw;
+        top: -10vw;
+        left: -10vw;
+        animation: drift-1 20s infinite alternate ease-in-out;
+      }
+      .drifting-shape-2 {
+        background: rgba(235, 178, 255, 0.25);
+        width: 50vw;
+        height: 50vw;
+        bottom: -20vw;
+        right: -10vw;
+        animation: drift-2 25s infinite alternate-reverse ease-in-out;
+      }
 
+      @keyframes drift-1 {
+        0% { transform: translate(0, 0) scale(1); opacity: 0.25; }
+        50% { transform: translate(10vw, 5vw) scale(1.1); opacity: 0.4; }
+        100% { transform: translate(-5vw, 15vw) scale(0.9); opacity: 0.25; }
+      }
+
+      @keyframes drift-2 {
+        0% { transform: translate(0, 0) scale(1); opacity: 0.25; }
+        50% { transform: translate(-15vw, -10vw) scale(1.2); opacity: 0.45; }
+        100% { transform: translate(5vw, -5vw) scale(0.8); opacity: 0.25; }
+      }
+
+      .particles-layer {
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+        z-index: 0;
+      }
+      
+      .particle {
+        position: absolute;
+        background-color: #00f2ff;
+        border-radius: 50%;
+        box-shadow: 0 0 10px 2px rgba(0, 242, 255, 0.3);
+        opacity: 0;
+        animation: float-particle var(--duration) linear infinite;
+        animation-delay: var(--delay);
+      }
+      
+      @keyframes float-particle {
+        0% { transform: translateY(0) translateX(0); opacity: 0; }
+        20% { opacity: var(--max-opacity); }
+        80% { opacity: var(--max-opacity); }
+        100% { transform: translateY(var(--move-y)) translateX(var(--move-x)); opacity: 0; }
+      }
+
+      .shimmer-button {
+        position: relative;
+        overflow: hidden;
+      }
+      
+      .shimmer-button::after {
+        content: '';
+        position: absolute;
+        top: -50%;
+        left: -50%;
+        width: 200%;
+        height: 200%;
+        background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.25), transparent);
+        transform: rotate(30deg) translateY(-50%) translateX(-100%);
+        animation: shimmer 3s infinite;
+      }
+      
+      @keyframes shimmer {
+        0% { transform: rotate(30deg) translateY(-50%) translateX(-100%); }
+        100% { transform: rotate(30deg) translateY(-50%) translateX(100%); }
+      }
+
+      .holographic-flicker {
+        animation: hologram-flicker 4s infinite;
+      }
+      
+      @keyframes hologram-flicker {
+        0%, 100% { opacity: 1; text-shadow: 0 0 5px currentColor; }
+        95% { opacity: 1; text-shadow: 0 0 5px currentColor; }
+        96% { opacity: 0.4; text-shadow: none; }
+        97% { opacity: 0.9; text-shadow: 0 0 2px currentColor; }
+        98% { opacity: 0.2; text-shadow: none; }
+        99% { opacity: 0.8; text-shadow: 0 0 8px currentColor; }
+      }
+
+      .fade-in-up {
+        opacity: 0;
+        animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+      }
+      
+      .delay-1 { animation-delay: 0.1s; }
+      .delay-2 { animation-delay: 0.3s; }
+
+      @keyframes fadeInUp {
+        0% { opacity: 0; transform: translateY(30px); }
+        100% { opacity: 1; transform: translateY(0); }
+      }
+    }
+    
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+</head>
+<body class="bg-background text-on-surface antialiased min-h-screen relative overflow-hidden flex flex-col font-body-md bg-nebula">
+
+  <!-- Dynamic Background Elements -->
+  <div class="drifting-shape drifting-shape-1"></div>
+  <div class="drifting-shape drifting-shape-2"></div>
+  <div class="particles-layer" id="particles-container"></div>
+  
+  <!-- Ambient Grid Overlay -->
+  <div class="absolute inset-0 pointer-events-none opacity-5 z-0" style="background-image: linear-gradient(to right, #849495 1px, transparent 1px), linear-gradient(to bottom, #849495 1px, transparent 1px); background-size: 40px 40px;"></div>
+
+  <!-- TopAppBar -->
+  <header class="fixed top-0 w-full z-50 bg-white/5 dark:bg-white/5 backdrop-blur-xl border-b border-white/10 shadow-[0_0_15px_rgba(0,242,255,0.15)] transition-all duration-500">
+    <div class="flex justify-between items-center px-gutter py-4 w-full max-w-max-width-desktop mx-auto">
+      <div class="flex items-center gap-3">
+        <span class="material-symbols-outlined text-primary dark:text-primary">language</span>
+        <span class="font-display-lg-mobile text-display-lg-mobile md:font-display-lg md:text-display-lg tracking-tighter text-primary dark:text-primary gradient-text-cyan">ASTRA_TRANSLATE</span>
+      </div>
+      <div class="flex items-center gap-4">
+        <!-- Neural Model Select inside Header -->
+        <div class="hidden md:flex items-center gap-2 bg-white/5 px-3 py-1.5 rounded-lg border border-white/10">
+          <span class="font-label-sm text-label-sm text-outline uppercase tracking-wider">Neural Core:</span>
+          <select id="ai-model" class="bg-transparent border-none text-primary font-label-sm text-label-sm focus:ring-0 p-0 cursor-pointer">
+            <option class="bg-surface-container" value="quantum">QUANTUM LINGO-X</option>
+            <option class="bg-surface-container" value="aether" selected>AETHER OMNI-V5</option>
+            <option class="bg-surface-container" value="deepneural">DEEPNEURAL-175B</option>
+          </select>
+        </div>
+        <img alt="User Profile" class="w-10 h-10 rounded-full border border-primary glow-cyan object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC1qB_of9sEdYMiIWvi8i62oyo3_wnlc0-grA06487J-_b7kzOAk3aTFHTqeeKDBCPAERrFq0BsKFzkWk3qAfUzdDcxZHMT9uvw9-yHuqJQ3b6-b-F316BsvyCwaMz2yEoJTDHGPkSn_u2haM9bHTIe-wcx-JRsv4vQMlUbPJukIRnt_2oiezoNeNNl9gW7sf2Sw7Gm2TD8tI4Rlr8D5YvfRtd2r354PdKBE7sHknvCtwwkbBlYQM9R4RbglssgSRtIFILdnXx4yeU"/>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content Canvas -->
+  <main class="flex-grow w-full max-w-max-width-desktop mx-auto px-margin-mobile md:px-gutter pt-[100px] pb-[60px] flex flex-col relative z-10">
+    
+    <!-- Status Hologram Overlay -->
+    <div class="absolute top-[120px] right-margin-mobile md:right-gutter flex flex-col gap-2 pointer-events-none z-20">
+      <div class="glass-panel px-3 py-1.5 rounded-full flex items-center gap-2 border-primary/30 holographic-flicker">
+        <div class="w-2 h-2 rounded-full bg-primary animate-pulse shadow-[0_0_8px_rgba(0,242,255,0.8)]"></div>
+        <span class="font-label-sm text-label-sm text-primary uppercase tracking-widest">AI Core: Online</span>
+      </div>
+      <div class="glass-panel px-3 py-1.5 rounded-full flex items-center gap-2 border-secondary/30 ml-auto holographic-flicker" style="animation-delay: 1.5s;">
+        <span id="sync-spinner" class="material-symbols-outlined text-secondary text-[14px]">sync</span>
+        <span id="sync-status" class="font-label-sm text-label-sm text-secondary uppercase tracking-widest">Awaiting Input...</span>
+      </div>
+    </div>
+
+    <!-- Active Latency Panel -->
+    <div class="absolute top-[120px] left-margin-mobile md:left-gutter flex flex-col gap-2 pointer-events-none z-20 hidden md:flex">
+      <div class="glass-panel px-3 py-1.5 rounded-full flex items-center gap-2 border-primary/20">
+        <span class="font-label-sm text-label-sm text-outline uppercase tracking-wider">LATENCY:</span>
+        <span id="holo-latency" class="font-label-sm text-label-sm text-primary">14ms</span>
+      </div>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-unit md:gap-gutter mt-12 flex-grow min-h-[480px] relative z-10 backdrop-blur-md">
+      
+      <!-- Source Input Panel -->
+      <section class="glass-panel rounded-xl flex flex-col h-[400px] md:h-full relative overflow-hidden border border-white/10 transition-all hover:border-primary/40 fade-in-up delay-1">
+        <div class="flex items-center justify-between p-4 border-b border-white/10 relative z-20">
+          
+          <!-- Source Language Dropdown -->
+          <div class="relative" id="source-dropdown-wrapper">
+            <button class="flex items-center gap-2 glass-panel px-4 py-2 rounded-lg glow-purple bg-[#FFFFFF1A] border-white/10 hover:border-secondary/40 text-secondary transition-all" id="source-dropdown-btn">
+              <span id="src-flag" class="text-[14px]">🌐</span>
+              <span class="font-label-sm text-label-sm uppercase tracking-wider" id="src-lang-text">English</span>
+              <span class="material-symbols-outlined text-[16px] text-secondary">arrow_drop_down</span>
+            </button>
+            
+            <div class="absolute top-[48px] left-0 w-[240px] bg-surface-container border border-white/10 rounded-xl p-2 shadow-2xl opacity-0 invisible scale-95 transition-all duration-200 z-50 dropdown-menu" id="source-dropdown-menu">
+              <div class="flex items-center gap-2 bg-white/5 border border-white/10 rounded-lg px-3 py-2 mb-2">
+                <span class="material-symbols-outlined text-[16px] text-outline">search</span>
+                <input class="bg-transparent border-none text-on-surface font-body-md text-[13px] focus:ring-0 p-0 w-full placeholder:text-outline/50" type="text" placeholder="Search languages..." id="src-lang-search" />
+              </div>
+              <ul class="max-h-[220px] overflow-y-auto dropdown-list flex flex-col gap-0.5" id="src-dropdown-list">
+                <!-- Javascript dynamic loading -->
+              </ul>
+            </div>
+          </div>
+
+          <div class="flex gap-2">
+            <button id="voice-input-btn" class="text-on-surface-variant hover:text-primary transition-all p-2 rounded-lg hover:bg-white/5 flex items-center justify-center" title="Voice Input">
+              <span id="mic-icon" class="material-symbols-outlined text-[20px]">mic</span>
+            </button>
+            <button id="clear-text-btn" class="text-on-surface-variant hover:text-error transition-all p-2 rounded-lg hover:bg-white/5 flex items-center justify-center opacity-0 pointer-events-none" title="Clear text">
+              <span class="material-symbols-outlined text-[20px]">close</span>
+            </button>
+          </div>
+        </div>
+
+        <div class="flex-grow p-6 relative flex flex-col">
+          <textarea id="source-input" class="w-full flex-grow bg-transparent border-none resize-none focus:ring-0 font-body-lg text-body-lg text-on-surface placeholder:text-on-surface-variant/45 focus:outline-none" placeholder="Initialize input sequence..."></textarea>
+          
+          <div class="flex justify-between items-center mt-2 border-t border-white/5 pt-3">
+            <span class="font-label-sm text-label-sm text-outline tracking-wider" id="char-counter">0 / 5000</span>
+            <div id="listening-indicator" class="hidden flex items-center gap-1.5 text-secondary">
+              <span class="w-1.5 h-1.5 rounded-full bg-secondary animate-bounce"></span>
+              <span class="w-1.5 h-1.5 rounded-full bg-secondary animate-bounce" style="animation-delay: 0.2s"></span>
+              <span class="w-1.5 h-1.5 rounded-full bg-secondary animate-bounce" style="animation-delay: 0.4s"></span>
+            </div>
+          </div>
+
+          <!-- Decorative bottom charge line -->
+          <div class="absolute bottom-0 left-0 w-full h-[2px] bg-white/10">
+            <div class="h-full bg-gradient-to-r from-transparent via-primary to-transparent w-1/3 animate-[translateX_3s_ease-in-out_infinite]"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Center Swapper (Responsive Layout Divider) -->
+      <div class="flex items-center justify-center md:h-full py-2 relative z-20">
+        <button id="language-swap-btn" class="bg-surface-container border border-white/10 text-on-surface-variant hover:text-primary transition-all duration-300 w-12 h-12 rounded-full flex items-center justify-center hover:border-primary/40 glow-cyan hover:scale-105 active:scale-95" title="Swap Language Matrix">
+          <span class="material-symbols-outlined text-[24px] rotate-90 md:rotate-0 transition-transform duration-500" id="swap-icon">swap_horiz</span>
+        </button>
+      </div>
+
+      <!-- Target Output Panel -->
+      <section class="glass-panel rounded-xl flex flex-col h-[400px] md:h-full relative overflow-hidden border border-primary/20 glow-cyan fade-in-up delay-2">
+        <!-- Holographic Scan Effect overlay -->
+        <div class="absolute inset-0 pointer-events-none overflow-hidden z-0 opacity-15">
+          <div class="scan-line absolute w-full h-full"></div>
+        </div>
+        
+        <div class="flex items-center justify-between p-4 border-b border-primary/20 relative z-20 bg-surface/30">
+          
+          <!-- Target Language Dropdown -->
+          <div class="relative" id="target-dropdown-wrapper">
+            <button class="flex items-center gap-2 glass-panel px-4 py-2 rounded-lg bg-primary/10 border-primary/30 hover:border-primary/60 text-primary transition-all" id="target-dropdown-btn">
+              <span id="target-flag" class="text-[14px]">🌐</span>
+              <span class="font-label-sm text-label-sm uppercase tracking-wider" id="target-lang-text">Spanish</span>
+              <span class="material-symbols-outlined text-[16px] text-primary">arrow_drop_down</span>
+            </button>
+            
+            <div class="absolute top-[48px] left-0 w-[240px] bg-surface-container border border-white/10 rounded-xl p-2 shadow-2xl opacity-0 invisible scale-95 transition-all duration-200 z-50 dropdown-menu" id="target-dropdown-menu">
+              <div class="flex items-center gap-2 bg-white/5 border border-white/10 rounded-lg px-3 py-2 mb-2">
+                <span class="material-symbols-outlined text-[16px] text-outline">search</span>
+                <input class="bg-transparent border-none text-on-surface font-body-md text-[13px] focus:ring-0 p-0 w-full placeholder:text-outline/50" type="text" placeholder="Search languages..." id="target-lang-search" />
+              </div>
+              <ul class="max-h-[220px] overflow-y-auto dropdown-list flex flex-col gap-0.5" id="target-dropdown-list">
+                <!-- Javascript dynamic loading -->
+              </ul>
+            </div>
+          </div>
+
+          <div class="flex gap-2">
+            <button id="speak-btn" class="text-on-surface-variant hover:text-primary transition-colors p-2 rounded-lg hover:bg-white/5 flex items-center justify-center" title="Speak Translation" disabled>
+              <span id="speaker-icon" class="material-symbols-outlined text-[20px]">volume_up</span>
+            </button>
+            <button id="copy-btn" class="text-on-surface-variant hover:text-primary transition-colors p-2 rounded-lg hover:bg-white/5 flex items-center justify-center" title="Copy Translation" disabled>
+              <span id="copy-icon" class="material-symbols-outlined text-[20px]">content_copy</span>
+            </button>
+          </div>
+        </div>
+
+        <div class="flex-grow p-6 relative z-10 flex flex-col overflow-hidden">
+          <div class="flex-grow overflow-y-auto pr-2">
+            <!-- Output Placeholder -->
+            <div id="output-placeholder" class="font-translation-output text-translation-output text-primary opacity-45 select-none h-full flex items-center justify-center">
+              <span>Esperando telemetría de entrada...</span>
+            </div>
+            <!-- Output Real text -->
+            <div id="target-output" class="font-translation-output text-translation-output text-primary break-words hidden"></div>
+          </div>
+          
+          <div class="flex justify-between items-center mt-2 border-t border-white/5 pt-3">
+            <span class="font-label-sm text-label-sm text-outline tracking-wider" id="confidence-rating">CONFIDENCE: --</span>
+          </div>
+        </div>
+
+        <!-- Action Area -->
+        <div class="p-4 flex justify-end bg-surface/20 border-t border-primary/10 relative z-10 gap-4 items-center">
+          
+          <!-- Speed control TTS slider hidden inline popover -->
+          <div id="speech-settings" class="hidden flex items-center gap-2 bg-white/5 border border-white/10 px-3 py-1.5 rounded-lg">
+            <span class="font-label-sm text-label-sm text-outline uppercase">Rate:</span>
+            <input type="range" id="tts-rate" min="0.5" max="1.5" step="0.1" value="1" class="w-16 accent-primary" />
+            <span id="rate-value" class="font-label-sm text-label-sm text-primary">1.0x</span>
+          </div>
+
+          <button id="translate-btn" class="bg-primary text-on-primary px-6 py-3 rounded-lg font-label-sm text-label-sm uppercase tracking-widest hover:scale-[1.02] active:scale-95 transition-all shadow-[0_0_20px_rgba(0,242,255,0.3)] shimmer-button flex items-center gap-2">
+            <span>Transmit</span>
+            <span class="material-symbols-outlined text-[16px] animate-pulse">sparkles</span>
+          </button>
+        </div>
+      </section>
+    </div>
+
+    <!-- Sleek Diagnostics Terminal Drawer -->
+    <div class="glass-panel border-white/10 rounded-xl mt-6 overflow-hidden transition-all duration-300 w-full" id="diagnostics-bar">
+      <button class="w-full flex justify-between items-center px-4 py-3 bg-white/5 border-b border-white/5 hover:bg-white/10 transition-all text-left focus:outline-none" id="diagnostics-toggle">
+        <div class="flex items-center gap-2 text-outline">
+          <span class="material-symbols-outlined text-[18px] text-primary">terminal</span>
+          <span class="font-label-sm text-label-sm tracking-wider uppercase">COGNITIVE RUNTIME LOGS</span>
+        </div>
+        <div class="flex items-center gap-3">
+          <span id="log-status" class="font-label-sm text-label-sm text-outline bg-white/5 border border-white/10 px-2 py-0.5 rounded">SYSTEM READY</span>
+          <span class="material-symbols-outlined text-[18px] text-outline transition-transform duration-300" id="diagnostics-arrow">expand_less</span>
+        </div>
+      </button>
+      <div class="h-0 opacity-0 overflow-y-auto font-label-sm text-label-sm text-outline p-0 transition-all duration-300" id="diagnostics-body" style="max-height: 120px;">
+        <div class="flex flex-col gap-1.5 p-4 font-mono select-text" id="terminal-logs-container">
+          <div class="flex gap-2"><span class="text-outline/40">[00.00s]</span><span class="text-primary">ASTRA_TRANSLATE Quantum kernel online.</span></div>
+          <div class="flex gap-2"><span class="text-outline/40">[00.02s]</span><span class="text-outline">Sync nodes established over HTTPS.</span></div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- BottomNavBar (Mobile Only) -->
+  <nav class="md:hidden fixed bottom-0 w-full z-50 rounded-t-xl bg-white/5 dark:bg-white/5 backdrop-blur-2xl border-t border-white/10 shadow-[0_-10px_30px_rgba(0,0,0,0.5)]">
+    <div class="flex justify-around items-center h-20 px-margin-mobile w-full">
+      <a class="flex flex-col items-center justify-center text-secondary drop-shadow-[0_0_8px_rgba(235,178,255,0.6)] Active: scale-95 duration-200" href="#">
+        <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">translate</span>
+        <span class="font-label-sm text-label-sm mt-1">Translate</span>
+      </a>
+      <a class="flex flex-col items-center justify-center text-on-surface-variant opacity-60 hover:opacity-100 hover:text-primary transition-all" href="#">
+        <span class="material-symbols-outlined">history</span>
+        <span class="font-label-sm text-label-sm mt-1">History</span>
+      </a>
+      <a class="flex flex-col items-center justify-center text-on-surface-variant opacity-60 hover:opacity-100 hover:text-primary transition-all" href="#">
+        <span class="material-symbols-outlined">menu_book</span>
+        <span class="font-label-sm text-label-sm mt-1">Lexicon</span>
+      </a>
+      <a class="flex flex-col items-center justify-center text-on-surface-variant opacity-60 hover:opacity-100 hover:text-primary transition-all" href="#">
+        <span class="material-symbols-outlined">settings</span>
+        <span class="font-label-sm text-label-sm mt-1">Settings</span>
+      </a>
+    </div>
+  </nav>
+
+  <!-- Minimal SaaS Footer -->
+  <footer class="hidden md:flex justify-between items-center px-gutter py-4 w-full max-w-max-width-desktop mx-auto border-t border-white/5 text-outline font-label-sm text-[10px] tracking-wider z-20">
+    <div class="flex items-center gap-4">
+      <span>GATEWAY: ASTRA-MATRIX-09.NET</span>
+      <span>|</span>
+      <span>UPTIME: <span id="footer-uptime">99.99%</span></span>
+    </div>
+    <div>
+      <span>© 2026 ASTRA_TRANSLATE. SECURED QUANTUM LAYER.</span>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
